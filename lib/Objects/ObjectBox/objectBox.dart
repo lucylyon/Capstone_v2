@@ -21,10 +21,10 @@ class ObjectBox {
       _putTableData();
     }
 
-    // if (partyBox.isEmpty()) {
-    //   print('in if partyBox.isEmpty');
-    //   _putDemoData();
-    // }
+    if (partyBox.isEmpty()) {
+      print('in if partyBox.isEmpty');
+      _putDemoData();
+    }
   }
 
   void _putTableData() {
@@ -39,11 +39,11 @@ class ObjectBox {
 
   void _putDemoData() {
     // create party
-    Party party1 = Party('name1');
+    Party party1 = Party('name 1');
     // assign a table to them
     party1.table.target = tableBox.get(1);
 
-    Party party2 = Party('name2');
+    Party party2 = Party('name 2');
     party2.table.target = tableBox.get(2);
 
     // add parties we just created to PartyBox

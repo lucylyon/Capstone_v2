@@ -23,7 +23,7 @@ class BottomNavPageState extends State<BottomNavPage> {
       style: optionStyle,
     ),
     Text(
-      'Index 1: Party Info',
+      'Index 1: Testing',
       style: optionStyle,
     ),
     Text(
@@ -56,7 +56,7 @@ class BottomNavPageState extends State<BottomNavPage> {
               Icons.tag_faces,
               color: Colors.blueGrey,
             ),
-            label: 'Party Info',
+            label: 'Testing',
           ),
           BottomNavigationBarItem(
             icon: Icon(

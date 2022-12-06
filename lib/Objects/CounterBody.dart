@@ -12,7 +12,7 @@ class CounterBody extends StatelessWidget {
     return AnimatedBuilder(
       animation: counterValueNotifier,
       builder: (BuildContext context, Widget? child) {
-        return Text('${counterValueNotifier.value.inMinutes}');
+        return Text('${counterValueNotifier.value.inMinutes}m');
       },
     );
   }
