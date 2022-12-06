@@ -14,50 +14,50 @@ import 'package:objectbox/internal.dart'; // generated code can access "internal
 import 'package:objectbox/objectbox.dart';
 import 'package:objectbox_sync_flutter_libs/objectbox_sync_flutter_libs.dart';
 
-import 'Objects/model.dart';
+import 'Objects/ObjectBox/model.dart';
 
 export 'package:objectbox/objectbox.dart'; // so that callers only have to import this file
 
 final _entities = <ModelEntity>[
   ModelEntity(
-      id: const IdUid(1, 7608616296206782918),
-      name: 'Party2',
-      lastPropertyId: const IdUid(3, 4846114434512186188),
+      id: const IdUid(3, 1028974137047872354),
+      name: 'Party',
+      lastPropertyId: const IdUid(3, 3535150075065647455),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 2956109229902477164),
+            id: const IdUid(1, 6091705255038676174),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 6554245934306255892),
+            id: const IdUid(2, 8502944687515635134),
             name: 'name',
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 4846114434512186188),
+            id: const IdUid(3, 3535150075065647455),
             name: 'tableId',
             type: 11,
             flags: 520,
-            indexId: const IdUid(1, 4200680047655490354),
-            relationTarget: 'Table2')
+            indexId: const IdUid(2, 3216641991569362167),
+            relationTarget: 'myTable')
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
   ModelEntity(
-      id: const IdUid(2, 4613489386952352673),
-      name: 'Table2',
-      lastPropertyId: const IdUid(2, 3503228508913699242),
+      id: const IdUid(5, 7639733328394587700),
+      name: 'myTable',
+      lastPropertyId: const IdUid(2, 7913464457750292665),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
-            id: const IdUid(1, 3666939304917952137),
+            id: const IdUid(1, 3591896250182657774),
             name: 'id',
             type: 6,
             flags: 1),
         ModelProperty(
-            id: const IdUid(2, 3503228508913699242),
+            id: const IdUid(2, 7913464457750292665),
             name: 'tableNumber',
             type: 6,
             flags: 0)
@@ -86,28 +86,40 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(2, 4613489386952352673),
-      lastIndexId: const IdUid(1, 4200680047655490354),
+      lastEntityId: const IdUid(5, 7639733328394587700),
+      lastIndexId: const IdUid(2, 3216641991569362167),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
-      retiredEntityUids: const [],
+      retiredEntityUids: const [
+        9070991375759217764,
+        6541336931039621162,
+        9056045383993088491
+      ],
       retiredIndexUids: const [],
-      retiredPropertyUids: const [],
+      retiredPropertyUids: const [
+        8123659760592865178,
+        4339627968343728224,
+        4804298527816204121,
+        860247414556252008,
+        3873068093839183365,
+        8396402611567574263,
+        7467828056380379891
+      ],
       retiredRelationUids: const [],
       modelVersion: 5,
       modelVersionParserMinimum: 5,
       version: 1);
 
   final bindings = <Type, EntityDefinition>{
-    Party2: EntityDefinition<Party2>(
+    Party: EntityDefinition<Party>(
         model: _entities[0],
-        toOneRelations: (Party2 object) => [object.table],
-        toManyRelations: (Party2 object) => {},
-        getId: (Party2 object) => object.id,
-        setId: (Party2 object, int id) {
+        toOneRelations: (Party object) => [object.table],
+        toManyRelations: (Party object) => {},
+        getId: (Party object) => object.id,
+        setId: (Party object, int id) {
           object.id = id;
         },
-        objectToFB: (Party2 object, fb.Builder fbb) {
+        objectToFB: (Party object, fb.Builder fbb) {
           final nameOffset = fbb.writeString(object.name);
           fbb.startTable(4);
           fbb.addInt64(0, object.id);
@@ -120,7 +132,7 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
-          final object = Party2(
+          final object = Party(
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 6, ''),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
@@ -129,15 +141,15 @@ ModelDefinition getObjectBoxModel() {
           object.table.attach(store);
           return object;
         }),
-    Table2: EntityDefinition<Table2>(
+    myTable: EntityDefinition<myTable>(
         model: _entities[1],
-        toOneRelations: (Table2 object) => [],
-        toManyRelations: (Table2 object) => {},
-        getId: (Table2 object) => object.id,
-        setId: (Table2 object, int id) {
+        toOneRelations: (myTable object) => [],
+        toManyRelations: (myTable object) => {},
+        getId: (myTable object) => object.id,
+        setId: (myTable object, int id) {
           object.id = id;
         },
-        objectToFB: (Table2 object, fb.Builder fbb) {
+        objectToFB: (myTable object, fb.Builder fbb) {
           fbb.startTable(3);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.tableNumber);
@@ -148,7 +160,7 @@ ModelDefinition getObjectBoxModel() {
           final buffer = fb.BufferContext(fbData);
           final rootOffset = buffer.derefObject(0);
 
-          final object = Table2(
+          final object = myTable(
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
 
@@ -159,25 +171,25 @@ ModelDefinition getObjectBoxModel() {
   return ModelDefinition(model, bindings);
 }
 
-/// [Party2] entity fields to define ObjectBox queries.
-class Party2_ {
-  /// see [Party2.id]
-  static final id = QueryIntegerProperty<Party2>(_entities[0].properties[0]);
+/// [Party] entity fields to define ObjectBox queries.
+class Party_ {
+  /// see [Party.id]
+  static final id = QueryIntegerProperty<Party>(_entities[0].properties[0]);
 
-  /// see [Party2.name]
-  static final name = QueryStringProperty<Party2>(_entities[0].properties[1]);
+  /// see [Party.name]
+  static final name = QueryStringProperty<Party>(_entities[0].properties[1]);
 
-  /// see [Party2.table]
+  /// see [Party.table]
   static final table =
-      QueryRelationToOne<Party2, Table2>(_entities[0].properties[2]);
+      QueryRelationToOne<Party, myTable>(_entities[0].properties[2]);
 }
 
-/// [Table2] entity fields to define ObjectBox queries.
-class Table2_ {
-  /// see [Table2.id]
-  static final id = QueryIntegerProperty<Table2>(_entities[1].properties[0]);
+/// [myTable] entity fields to define ObjectBox queries.
+class myTable_ {
+  /// see [myTable.id]
+  static final id = QueryIntegerProperty<myTable>(_entities[1].properties[0]);
 
-  /// see [Table2.tableNumber]
+  /// see [myTable.tableNumber]
   static final tableNumber =
-      QueryIntegerProperty<Table2>(_entities[1].properties[1]);
+      QueryIntegerProperty<myTable>(_entities[1].properties[1]);
 }

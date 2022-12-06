@@ -1,7 +1,7 @@
 import 'package:objectbox/objectbox.dart';
 
 @Entity()
-class Party2 {
+class Party {
   @Id()
   int id;
 
@@ -12,19 +12,19 @@ class Party2 {
   // DateTime timeAdded;
   // bool seated?
 
-  Party2(this.name, {this.id = 0});
+  Party(this.name, {this.id = 0});
 
-  final table = ToOne<Table2>();
+  final table = ToOne<myTable>();
 }
 
 @Entity()
-class Table2 {
+class myTable {
   @Id()
   int id;
 
   int tableNumber;
 
-  Table2(this.tableNumber, {this.id = 0});
+  myTable(this.tableNumber, {this.id = 0});
 }
 
 

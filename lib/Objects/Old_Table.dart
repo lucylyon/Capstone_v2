@@ -3,13 +3,13 @@
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'CounterBody.dart';
-import 'Party.dart';
+import 'Old_Party.dart';
 import 'global.dart';
 
 // using party as a base
 // ignore: camel_case_types
-class myTable {
-  const myTable({
+class Old_Table {
+  const Old_Table({
     required this.tableNumber,
     required this.state,
     required this.party,
@@ -24,13 +24,13 @@ class myTable {
 // is it possible to have maybe Party preassignedParty
 // also maybe DateTime seated
 
-typedef TableEditCallback = Function(myTable table);
+typedef TableEditCallback = Function(Old_Table table);
 
 class TableItem extends StatelessWidget {
   TableItem({required this.table, required this.tableEdit})
       : super(key: ObjectKey(table));
 
-  final myTable table;
+  final Old_Table table;
   final TableEditCallback tableEdit;
   //get rid of these ? just use onPressed: tablePressedDialog
   final ValueNotifier<Duration> counter =

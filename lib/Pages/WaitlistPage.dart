@@ -1,10 +1,12 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../Objects/Party.dart';
+import '../Objects/Old_Party.dart';
 import '../Widgets/PartyTappedButton.dart';
 import 'dart:async';
 import '../Objects/global.dart';
+import '../main.dart';
+import '../Objects/ObjectBox/model.dart';
 
 class WaitlistPage extends StatefulWidget {
   const WaitlistPage({super.key});
@@ -38,6 +40,9 @@ class WaitlistPageState extends State<WaitlistPage> {
 
   ValueNotifier<int> counter = ValueNotifier<int>(0);
 
+  // List<myTable> tables = objectbox.tableBox.getAll();
+  // late myTable currentTable;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,7 +67,7 @@ class WaitlistPageState extends State<WaitlistPage> {
     );
   }
 
-  void partyTappedDialog(Party party) => showDialog(
+  void partyTappedDialog(Old_Party party) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
             title: Text(title),
@@ -183,7 +188,7 @@ class WaitlistPageState extends State<WaitlistPage> {
 
   void handlePartyItem(name, size, phoneNumber, timeQuoted, timeAdded) {
     setState(() {
-      Party newParty = Party(
+      Old_Party newParty = Old_Party(
         name: name,
         size: size,
         phoneNumber: phoneNumber,
@@ -195,14 +200,14 @@ class WaitlistPageState extends State<WaitlistPage> {
     });
   }
 
-  void removeParty(Party party) {
+  void removeParty(Old_Party party) {
     setState(() {
       waitList.remove(party);
       Navigator.pop(context);
     });
   }
 
-  void partyClicked(Party party) {
+  void partyClicked(Old_Party party) {
     setState(() {
       title = party.name;
       partyTappedDialog(party);

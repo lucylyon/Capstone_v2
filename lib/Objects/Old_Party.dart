@@ -4,8 +4,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'CounterBody.dart';
 
-class Party {
-  const Party({
+class Old_Party {
+  const Old_Party({
     required this.name,
     required this.size,
     required this.phoneNumber,
@@ -22,13 +22,13 @@ class Party {
   //final bool notified;
 }
 
-typedef PartyEditCallback = Function(Party party);
+typedef PartyEditCallback = Function(Old_Party party);
 
 class PartyItem extends StatelessWidget {
   PartyItem({required this.party, required this.partyEdit})
       : super(key: ObjectKey(party));
 
-  final Party party;
+  final Old_Party party;
   final PartyEditCallback partyEdit;
   final ValueNotifier<Duration> counter =
       ValueNotifier<Duration>(Duration(seconds: 0));

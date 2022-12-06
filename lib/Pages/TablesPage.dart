@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../Objects/Table.dart';
+import '../Objects/Old_Table.dart';
 import '../Objects/global.dart';
 
 class TablesPage extends StatefulWidget {
@@ -71,7 +71,7 @@ class TablesPageState extends State<TablesPage> {
     );
   }
 
-  void tableEdit(myTable table) {
+  void tableEdit(Old_Table table) {
     print('table edit');
   }
 }
