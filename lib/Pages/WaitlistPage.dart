@@ -172,7 +172,24 @@ class WaitlistPageState extends State<WaitlistPage> {
                           });
                         },
                         child: Text('Save'),
-                      )
+                      ),
+                      TextButton(
+                          onPressed: () {
+                            setState(() {
+                              createParty(nameController.text);
+                            });
+                            // print('name controller text:');
+                            // print(nameController.text);
+                            // print('count:');
+                            // print(objectbox.partyBox.count());
+                            // print('get parties:');
+                            // print(objectbox.getParties());
+                            // print('this shoudl be the one just added');
+                            // print(objectbox.partyBox
+                            //     .get(objectbox.partyBox.count())
+                            //     ?.name);
+                          },
+                          child: Text('test'))
                     ]));
       });
 
@@ -198,6 +215,10 @@ class WaitlistPageState extends State<WaitlistPage> {
       waitList.add(newParty);
       clear();
     });
+  }
+
+  void createParty(String partyName) {
+    objectbox.addParty(name);
   }
 
   void removeParty(Old_Party party) {

@@ -2,10 +2,12 @@
 
 import 'dart:ffi';
 
+import 'package:capstone_V2/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../Objects/CounterBody.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:objectbox/objectbox.dart';
 
 class PartyInfoPage extends StatefulWidget {
   const PartyInfoPage({super.key});
@@ -80,7 +82,7 @@ class PartyInfoPageState extends State<PartyInfoPage> {
     return Scaffold(
         backgroundColor: Colors.blueGrey[50],
         appBar: AppBar(
-          title: const Text('Party Info'),
+          title: const Text('Testing Page'),
           backgroundColor: Colors.blueGrey[700],
         ),
         body: Column(
@@ -176,24 +178,13 @@ class PartyInfoPageState extends State<PartyInfoPage> {
                 ),
               ],
             ),
-            //   ElevatedButton(
-            // style: btnStyle,
-            // onPressed: () {
-            //   // stopwatch.start();
-            //   // print('stopwatch started');
-            //   Timer.periodic(const Duration(seconds: 5), (timer) {
-            //     print(timer.tick);
-            //     //counter--;
-            //   });
-            // },
-            // child: const Text('Start'))
             ElevatedButton(
                 style: btnStyle,
                 onPressed: () {
                   stopwatch.start();
                   print('stopwatch started');
                 },
-                child: const Text('Stop')),
+                child: const Text('Start stopwatch')),
             ElevatedButton(
                 style: btnStyle,
                 onPressed: () {
@@ -202,21 +193,28 @@ class PartyInfoPageState extends State<PartyInfoPage> {
                   print('stopwatch stopped');
                   print(elapsed.inSeconds);
                 },
-                child: const Text('Stop')),
+                child: const Text('Stop stopwatch')),
+            // ElevatedButton(
+            //     style: ElevatedButton.styleFrom(),
+            //     onPressed: () {},
+            //     child: Text('testing')),
             ElevatedButton(
-                style: ElevatedButton.styleFrom(),
-                onPressed: () {},
-                child: Text('testing')),
-            ElevatedButton(
-              child: Text('Button'),
-              onPressed: () {},
+              onPressed: () {
+                objectbox.getPartyNames();
+              },
               style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.purple,
-                  padding: EdgeInsets.symmetric(horizontal: 50, vertical: 20),
+                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
                   textStyle:
-                      TextStyle(fontSize: 30, fontWeight: FontWeight.bold)),
+                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+              child: Text('print names'),
             ),
-            //Text(elapsed.inSeconds().toString())
+            ElevatedButton(
+                onPressed: () {
+                  objectbox.partyBox.removeAll();
+                  print('party box cleared');
+                },
+                child: Text('clear partyBox'))
           ],
         ));
   }

@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:capstone_V2/objectbox.g.dart';
 import 'model.dart';
 
+//tableBox is hard coded; can't change # of tables;
+
 class ObjectBox {
   late final Store store;
 
@@ -14,22 +16,35 @@ class ObjectBox {
     partyBox = Box<Party>(store);
     tableBox = Box<myTable>(store);
 
-    if (partyBox.isEmpty()) {
-      _putDemoData();
+    if (tableBox.isEmpty()) {
+      print('in if tableBox.isEmpty');
+      _putTableData();
     }
+
+    // if (partyBox.isEmpty()) {
+    //   print('in if partyBox.isEmpty');
+    //   _putDemoData();
+    // }
+  }
+
+  void _putTableData() {
+    myTable table1 = myTable(1);
+    print('table ${table1.id} created');
+    myTable table2 = myTable(2);
+    print('table ${table2.id} created');
+
+    tableBox.putMany([table1, table2]);
+    print('tables ${tableBox.getAll().toString()} added');
   }
 
   void _putDemoData() {
-    myTable table1 = myTable(1);
-    myTable table2 = myTable(2);
-
     // create party
     Party party1 = Party('name1');
     // assign a table to them
-    party1.table.target = table1;
+    party1.table.target = tableBox.get(1);
 
     Party party2 = Party('name2');
-    party2.table.target = table2;
+    party2.table.target = tableBox.get(2);
 
     // add parties we just created to PartyBox
     partyBox.putMany([party1, party2]);
@@ -38,7 +53,6 @@ class ObjectBox {
   //creates objectBox w/ store
   static Future<ObjectBox> create() async {
     final store = await openStore();
-    print('objectbox created');
     return ObjectBox._create(store);
   }
 
@@ -66,5 +80,15 @@ class ObjectBox {
   Stream<List<Party>> getParties() {
     final builder = partyBox.query()..order(Party_.id, flags: Order.descending);
     return builder.watch(triggerImmediately: true).map((query) => query.find());
+  }
+
+  // for testing purposes:
+  void getPartyNames() {
+    if (partyBox.isEmpty()) {
+      print('party box is empty');
+    }
+    for (var i = partyBox.count(); i > 0; i--) {
+      print(partyBox.get(i)?.name);
+    }
   }
 }

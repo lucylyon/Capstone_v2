@@ -3,6 +3,14 @@
 import 'Old_Party.dart';
 import 'Old_Table.dart';
 
+///
+///
+///
+///     Goal: be able to delete this - objectBox is global stuff
+///
+///
+///
+
 enum TableState { open, dirty, seated, disabled }
 
 List<Old_Party> waitList = [];

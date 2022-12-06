@@ -6,6 +6,14 @@ import 'CounterBody.dart';
 import 'Old_Party.dart';
 import 'global.dart';
 
+///
+///
+///
+///     Goal: be able to delete this
+///
+///
+/// (also it's not fully functional)
+
 // using party as a base
 // ignore: camel_case_types
 class Old_Table {

@@ -4,6 +4,14 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'CounterBody.dart';
 
+///
+///
+///
+///     Goal: be able to delete this
+///
+///
+///
+
 class Old_Party {
   const Old_Party({
     required this.name,
