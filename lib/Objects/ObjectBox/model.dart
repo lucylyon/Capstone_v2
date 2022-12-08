@@ -6,13 +6,20 @@ class Party {
   int id;
 
   String name;
+  String size;
+  String phoneNumber;
+  int timeQuoted;
+
+  @Property(type: PropertyType.date)
+  DateTime timeAdded;
   // int size;
   // String phoneNumber;
   // int timeQuoted;
   // DateTime timeAdded;
   // bool seated?
 
-  Party(this.name, {this.id = 0});
+  Party(this.name, this.size, this.phoneNumber, this.timeQuoted, this.timeAdded,
+      {this.id = 0});
 
   final table = ToOne<myTable>();
 }

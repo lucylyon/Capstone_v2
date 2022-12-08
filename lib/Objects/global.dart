@@ -1,6 +1,5 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'Old_Party.dart';
 import 'Old_Table.dart';
 
 ///
@@ -13,7 +12,7 @@ import 'Old_Table.dart';
 
 enum TableState { open, dirty, seated, disabled }
 
-List<Old_Party> waitList = [];
+//List<Old_Party> waitList = [];
 
 Old_Table table = Old_Table(
     tableNumber: 1, state: TableState.open, party: false, preassigned: false);

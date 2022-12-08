@@ -38,12 +38,13 @@ class ObjectBox {
   }
 
   void _putDemoData() {
+    DateTime now = DateTime.now();
     // create party
-    Party party1 = Party('name 1');
+    Party party1 = Party('name 1', '1', '11', 10, now);
     // assign a table to them
     party1.table.target = tableBox.get(1);
 
-    Party party2 = Party('name 2');
+    Party party2 = Party('name 2', '2', '22', 20, now);
     party2.table.target = tableBox.get(2);
 
     // add parties we just created to PartyBox
@@ -56,18 +57,25 @@ class ObjectBox {
     return ObjectBox._create(store);
   }
 
-  void addParty(String name) {
+  void addParty(Party newParty) {
+    //void addParty(String name, String size, String phoneNumber, int timeQuoted,
+    //   DateTime timeAdded) {
+    // String size = '90';
+    // String phoneNumber = '#';
+    // int timeQuoted = 45;
+    // DateTime timeAdded = DateTime.now();
     //by default everyone is added to table 0, so not passing table as a parameter
     myTable waitListTable = myTable(0); //creates table that is the 'waitlist'
     //aka if anyone is seated at table 0, then they are on the waitlist
     //im sure there is a better way to do this, but this gets the job done
-    Party newParty = Party(name);
+    print('in objectbox addParty');
+    //Party newParty = Party(name, size, phoneNumber, timeQuoted, timeAdded);
     newParty.table.target = waitListTable;
 
     partyBox.put(newParty);
 
     print(
-        'Added party: ${newParty.name} assigned to table ${newParty.table.target?.tableNumber}');
+        'Added party: \'${newParty.name}\' assigned to table ${newParty.table.target?.tableNumber}');
   }
 
   int addTable(int tableNumber) {

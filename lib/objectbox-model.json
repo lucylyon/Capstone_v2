@@ -5,7 +5,7 @@
   "entities": [
     {
       "id": "3:1028974137047872354",
-      "lastPropertyId": "3:3535150075065647455",
+      "lastPropertyId": "7:5500193495818654090",
       "name": "Party",
       "properties": [
         {
@@ -26,6 +26,26 @@
           "flags": 520,
           "indexId": "2:3216641991569362167",
           "relationTarget": "myTable"
+        },
+        {
+          "id": "4:3584896501297269090",
+          "name": "size",
+          "type": 9
+        },
+        {
+          "id": "5:8168190879334256525",
+          "name": "phoneNumber",
+          "type": 9
+        },
+        {
+          "id": "6:8265851836799662482",
+          "name": "timeQuoted",
+          "type": 6
+        },
+        {
+          "id": "7:5500193495818654090",
+          "name": "timeAdded",
+          "type": 10
         }
       ],
       "relations": []

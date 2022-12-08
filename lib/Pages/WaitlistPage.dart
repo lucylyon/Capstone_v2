@@ -1,12 +1,14 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../Objects/Old_Party.dart';
+//import '../Objects/Old_Party.dart';
 import '../Widgets/PartyTappedButton.dart';
 import 'dart:async';
-import '../Objects/global.dart';
+//import '../Objects/global.dart';
 import '../main.dart';
 import '../Objects/ObjectBox/model.dart';
+//import '../Widgets/partyCard.dart';
+import '../Widgets/waitlistView.dart';
 
 class WaitlistPage extends StatefulWidget {
   const WaitlistPage({super.key});
@@ -51,23 +53,26 @@ class WaitlistPageState extends State<WaitlistPage> {
         title: Text('WaitList'),
         backgroundColor: Colors.blueGrey[700],
       ),
-      body: ListView(
-        padding: const EdgeInsets.symmetric(vertical: 8.0),
-        children: waitList.map(
-          (item) {
-            return PartyItem(
-              party: item,
-              partyEdit: partyClicked,
-            );
-          },
-        ).toList(),
-      ),
+      body: WaitList(),
+      //Text('waitListView here?'),
+      //  ListView(
+      //   padding: const EdgeInsets.symmetric(vertical: 8.0),
+      //   children: waitList.map(
+      //     (item) {
+      //       return PartyItem(
+      //         party: item,
+      //         partyEdit: partyClicked,
+      //       );
+      //     },
+      //   ).toList(),
+      // ),
       floatingActionButton: FloatingActionButton(
           onPressed: newPartyDialog, child: const Icon(Icons.add)),
     );
   }
 
-  void partyTappedDialog(Old_Party party) => showDialog(
+// changed to be Objectbox Party
+  void partyTappedDialog(Party party) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
             title: Text(title),
@@ -90,7 +95,7 @@ class WaitlistPageState extends State<WaitlistPage> {
                   ),
                   MyButton(
                     btnText: 'Remove',
-                    onPressed: (() => removeParty(party)),
+                    onPressed: (() => Navigator.pop(context)),
                   ),
                   MyButton(
                     btnText: 'Edit',
@@ -161,35 +166,26 @@ class WaitlistPageState extends State<WaitlistPage> {
                           setState(() {
                             DateTime now = DateTime.now();
                             timeAdded = now.minute.toString();
-                            handlePartyItem(
+                            createParty(
                               nameController.text,
                               sizeController.text,
                               phoneNumberController.text,
                               timeQuoted,
                               DateTime.now(),
                             );
+                            //   create new party here
+                            // handlePartyItem(
+                            // nameController.text,
+                            // sizeController.text,
+                            // phoneNumberController.text,
+                            // timeQuoted,
+                            // DateTime.now(),
+                            // );
                             Navigator.pop(context);
                           });
                         },
                         child: Text('Save'),
                       ),
-                      TextButton(
-                          onPressed: () {
-                            setState(() {
-                              createParty(nameController.text);
-                            });
-                            // print('name controller text:');
-                            // print(nameController.text);
-                            // print('count:');
-                            // print(objectbox.partyBox.count());
-                            // print('get parties:');
-                            // print(objectbox.getParties());
-                            // print('this shoudl be the one just added');
-                            // print(objectbox.partyBox
-                            //     .get(objectbox.partyBox.count())
-                            //     ?.name);
-                          },
-                          child: Text('test'))
                     ]));
       });
 
@@ -203,37 +199,41 @@ class WaitlistPageState extends State<WaitlistPage> {
     clear();
   }
 
-  void handlePartyItem(name, size, phoneNumber, timeQuoted, timeAdded) {
-    setState(() {
-      Old_Party newParty = Old_Party(
-        name: name,
-        size: size,
-        phoneNumber: phoneNumber,
-        timeQuoted: timeQuoted,
-        timeAdded: timeAdded,
-      );
-      waitList.add(newParty);
-      clear();
-    });
+  // void handlePartyItem(name, size, phoneNumber, timeQuoted, timeAdded) {
+  //   setState(() {
+  //     Old_Party newParty = Old_Party(
+  //       name: name,
+  //       size: size,
+  //       phoneNumber: phoneNumber,
+  //       timeQuoted: timeQuoted,
+  //       timeAdded: timeAdded,
+  //     );
+  //     waitList.add(newParty);
+  //     clear();
+  //   });
+  // }
+
+  void createParty(String name, String size, String phoneNumber, int timeQuoted,
+      DateTime timeAdded) {
+    Party newParty = Party(name, size, phoneNumber, timeQuoted, timeAdded);
+
+    print('in createParty. (waitlistpage)');
+    objectbox.addParty(newParty);
   }
 
-  void createParty(String partyName) {
-    objectbox.addParty(name);
-  }
+  // void removeParty(Old_Party party) {
+  //   setState(() {
+  //     waitList.remove(party);
+  //     Navigator.pop(context);
+  //   });
+  // }
 
-  void removeParty(Old_Party party) {
-    setState(() {
-      waitList.remove(party);
-      Navigator.pop(context);
-    });
-  }
-
-  void partyClicked(Old_Party party) {
-    setState(() {
-      title = party.name;
-      partyTappedDialog(party);
-    });
-  }
+  // void partyClicked(Old_Party party) {
+  //   setState(() {
+  //     title = party.name;
+  //     partyTappedDialog(party);
+  //   });
+  // }
 
 ////// all of these are controller functions
   @override

@@ -57,8 +57,8 @@ class PartyInfoPageState extends State<PartyInfoPage> {
     Stopwatch stopwatch = Stopwatch();
     Duration elapsed;
 
-    var demoParty = objectbox.partyBox.get(1);
-    var demoPartyName = demoParty!.name;
+    // var demoParty = objectbox.partyBox.get(1);
+    // var demoPartyName = demoParty!.name;
 
     //  print('test');
     // Timer timer = Timer.periodic(const Duration(seconds: 1), (timer) {});
@@ -208,7 +208,7 @@ class PartyInfoPageState extends State<PartyInfoPage> {
                       TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
               child: Text('print names'),
             ),
-            Text('first name in partyBox: ${objectbox.partyBox.get(1)!.name}'),
+            //  Text('first name in partyBox: ${objectbox.partyBox.get(1)!.name}'),
 
             ElevatedButton(
                 onPressed: () {
