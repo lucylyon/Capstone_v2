@@ -1,6 +1,3 @@
-//import 'objectbox.g.dart'; // created by `flutter pub run build_runner build`
-import 'package:flutter/material.dart';
-
 import 'package:capstone_V2/objectbox.g.dart';
 import 'model.dart';
 
@@ -58,20 +55,12 @@ class ObjectBox {
   }
 
   void addParty(Party newParty) {
-    //void addParty(String name, String size, String phoneNumber, int timeQuoted,
-    //   DateTime timeAdded) {
-    // String size = '90';
-    // String phoneNumber = '#';
-    // int timeQuoted = 45;
-    // DateTime timeAdded = DateTime.now();
-    //by default everyone is added to table 0, so not passing table as a parameter
-    myTable waitListTable = myTable(0); //creates table that is the 'waitlist'
+    myTable waitListTable = myTable(0);
+    //creates table that is the 'waitlist'
     //aka if anyone is seated at table 0, then they are on the waitlist
     //im sure there is a better way to do this, but this gets the job done
     print('in objectbox addParty');
-    //Party newParty = Party(name, size, phoneNumber, timeQuoted, timeAdded);
     newParty.table.target = waitListTable;
-
     partyBox.put(newParty);
 
     print(

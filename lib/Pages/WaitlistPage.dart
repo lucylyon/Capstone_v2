@@ -1,13 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-//import '../Objects/Old_Party.dart';
 import '../Widgets/PartyTappedButton.dart';
 import 'dart:async';
-//import '../Objects/global.dart';
 import '../main.dart';
 import '../Objects/ObjectBox/model.dart';
-//import '../Widgets/partyCard.dart';
 import '../Widgets/waitlistView.dart';
 
 class WaitlistPage extends StatefulWidget {
@@ -42,8 +39,8 @@ class WaitlistPageState extends State<WaitlistPage> {
 
   ValueNotifier<int> counter = ValueNotifier<int>(0);
 
-  // List<myTable> tables = objectbox.tableBox.getAll();
-  // late myTable currentTable;
+  List<myTable> tables = objectbox.tableBox.getAll();
+  late myTable currentTable;
 
   @override
   Widget build(BuildContext context) {
@@ -54,24 +51,11 @@ class WaitlistPageState extends State<WaitlistPage> {
         backgroundColor: Colors.blueGrey[700],
       ),
       body: WaitList(),
-      //Text('waitListView here?'),
-      //  ListView(
-      //   padding: const EdgeInsets.symmetric(vertical: 8.0),
-      //   children: waitList.map(
-      //     (item) {
-      //       return PartyItem(
-      //         party: item,
-      //         partyEdit: partyClicked,
-      //       );
-      //     },
-      //   ).toList(),
-      // ),
       floatingActionButton: FloatingActionButton(
           onPressed: newPartyDialog, child: const Icon(Icons.add)),
     );
   }
 
-// changed to be Objectbox Party
   void partyTappedDialog(Party party) => showDialog(
       context: context,
       builder: (context) => AlertDialog(
@@ -173,14 +157,6 @@ class WaitlistPageState extends State<WaitlistPage> {
                               timeQuoted,
                               DateTime.now(),
                             );
-                            //   create new party here
-                            // handlePartyItem(
-                            // nameController.text,
-                            // sizeController.text,
-                            // phoneNumberController.text,
-                            // timeQuoted,
-                            // DateTime.now(),
-                            // );
                             Navigator.pop(context);
                           });
                         },

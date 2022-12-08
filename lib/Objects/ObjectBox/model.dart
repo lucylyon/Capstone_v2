@@ -1,5 +1,8 @@
 import 'package:objectbox/objectbox.dart';
 
+// https://www.youtube.com/watch?v=6YPSQPS_bhU
+// object box tutorial
+
 @Entity()
 class Party {
   @Id()
@@ -12,10 +15,7 @@ class Party {
 
   @Property(type: PropertyType.date)
   DateTime timeAdded;
-  // int size;
-  // String phoneNumber;
-  // int timeQuoted;
-  // DateTime timeAdded;
+
   // bool seated?
 
   Party(this.name, this.size, this.phoneNumber, this.timeQuoted, this.timeAdded,
@@ -33,9 +33,6 @@ class myTable {
 
   myTable(this.tableNumber, {this.id = 0});
 }
-
-
-
   // final int tableNumber;
   // final TableState state;
   // final Party party; // fix this later
