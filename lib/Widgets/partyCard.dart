@@ -1,10 +1,10 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:async';
-
 import 'package:capstone_V2/Objects/CounterBody.dart';
 import 'package:flutter/material.dart';
 import '../Objects/ObjectBox/model.dart';
+import 'PartyTappedButton.dart';
 
 class PartyCard extends StatefulWidget {
   final Party party;
@@ -18,6 +18,7 @@ class PartyCard extends StatefulWidget {
 class PartyCardState extends State<PartyCard> {
   final ValueNotifier<Duration> counter =
       ValueNotifier<Duration>(Duration(seconds: 0));
+  String title = '';
 
   @override
   Widget build(BuildContext context) {
@@ -26,7 +27,9 @@ class PartyCardState extends State<PartyCard> {
     });
     return Card(
       child: ListTile(
-        onTap: () {},
+        onTap: () {
+          partyTappedDialog(widget.party);
+        },
         leading: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -47,4 +50,39 @@ class PartyCardState extends State<PartyCard> {
       ),
     );
   }
+
+  void partyTappedDialog(Party party) => showDialog(
+      context: context,
+      builder: (context) => AlertDialog(
+            title: Text(party.name),
+            content: FractionallySizedBox(
+              widthFactor: 0.8,
+              heightFactor: 0.43,
+              child: Column(
+                children: [
+                  MyButton(
+                    btnText: 'Seat',
+                    onPressed: (() => Navigator.pop(context)),
+                  ),
+                  MyButton(
+                    btnText: 'Preassign',
+                    onPressed: (() => Navigator.pop(context)),
+                  ),
+                  MyButton(
+                    btnText: 'Remove',
+                    onPressed: (() => Navigator.pop(context)),
+                  ),
+                  MyButton(
+                    btnText: 'Edit',
+                    onPressed: (() => Navigator.pop(context)),
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: (() => Navigator.pop(context)),
+                  child: Text('Cancel')),
+            ],
+          ));
 }

@@ -3,6 +3,8 @@ import 'package:objectbox/objectbox.dart';
 // https://www.youtube.com/watch?v=6YPSQPS_bhU
 // object box tutorial
 
+enum TableState { open, dirty, seated, disabled }
+
 @Entity()
 class Party {
   @Id()
@@ -30,8 +32,12 @@ class myTable {
   int id;
 
   int tableNumber;
+  // TableState state;
+  // Party? party;
 
   myTable(this.tableNumber, {this.id = 0});
+
+  //myTable(this.tableNumber, this.state, this.party, {this.id = 0});
 }
   // final int tableNumber;
   // final TableState state;

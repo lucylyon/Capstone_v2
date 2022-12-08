@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import '../Widgets/PartyTappedButton.dart';
 import 'dart:async';
 import '../main.dart';
 import '../Objects/ObjectBox/model.dart';
@@ -55,45 +54,6 @@ class WaitlistPageState extends State<WaitlistPage> {
           onPressed: newPartyDialog, child: const Icon(Icons.add)),
     );
   }
-
-  void partyTappedDialog(Party party) => showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-            title: Text(title),
-            content: FractionallySizedBox(
-              widthFactor: 0.8,
-              heightFactor: 0.55,
-              child: Column(
-                children: [
-                  MyButton(
-                    btnText: 'Seat',
-                    onPressed: (() => Navigator.pop(context)),
-                  ),
-                  MyButton(
-                    btnText: 'Preassign',
-                    onPressed: (() => Navigator.pop(context)),
-                  ),
-                  MyButton(
-                    btnText: 'Notify (?)',
-                    onPressed: (() => Navigator.pop(context)),
-                  ),
-                  MyButton(
-                    btnText: 'Remove',
-                    onPressed: (() => Navigator.pop(context)),
-                  ),
-                  MyButton(
-                    btnText: 'Edit',
-                    onPressed: (() => Navigator.pop(context)),
-                  ),
-                ],
-              ),
-            ),
-            actions: <Widget>[
-              TextButton(
-                  onPressed: (() => Navigator.pop(context)),
-                  child: Text('Cancel')),
-            ],
-          ));
 
   //https://www.youtube.com/watch?v=D6icsXS8NeA -- getting popup w/ dialog
   Future<String?> newPartyDialog() => showDialog(
@@ -175,20 +135,6 @@ class WaitlistPageState extends State<WaitlistPage> {
     clear();
   }
 
-  // void handlePartyItem(name, size, phoneNumber, timeQuoted, timeAdded) {
-  //   setState(() {
-  //     Old_Party newParty = Old_Party(
-  //       name: name,
-  //       size: size,
-  //       phoneNumber: phoneNumber,
-  //       timeQuoted: timeQuoted,
-  //       timeAdded: timeAdded,
-  //     );
-  //     waitList.add(newParty);
-  //     clear();
-  //   });
-  // }
-
   void createParty(String name, String size, String phoneNumber, int timeQuoted,
       DateTime timeAdded) {
     Party newParty = Party(name, size, phoneNumber, timeQuoted, timeAdded);
@@ -204,12 +150,7 @@ class WaitlistPageState extends State<WaitlistPage> {
   //   });
   // }
 
-  // void partyClicked(Old_Party party) {
-  //   setState(() {
-  //     title = party.name;
-  //     partyTappedDialog(party);
-  //   });
-  // }
+
 
 ////// all of these are controller functions
   @override

@@ -198,19 +198,6 @@ class PartyInfoPageState extends State<PartyInfoPage> {
                 },
                 child: const Text('Stop stopwatch')),
             ElevatedButton(
-              onPressed: () {
-                objectbox.getPartyNames();
-              },
-              style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.purple,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  textStyle:
-                      TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-              child: Text('print names'),
-            ),
-            //  Text('first name in partyBox: ${objectbox.partyBox.get(1)!.name}'),
-
-            ElevatedButton(
                 onPressed: () {
                   objectbox.partyBox.removeAll();
                   print('party box cleared');
