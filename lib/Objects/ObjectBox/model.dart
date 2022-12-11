@@ -3,7 +3,7 @@ import 'package:objectbox/objectbox.dart';
 // https://www.youtube.com/watch?v=6YPSQPS_bhU
 // object box tutorial
 
-enum TableState { open, dirty, seated, disabled }
+//enum TableState { open, dirty, seated, disabled }
 
 @Entity()
 class Party {
@@ -23,7 +23,7 @@ class Party {
   Party(this.name, this.size, this.phoneNumber, this.timeQuoted, this.timeAdded,
       {this.id = 0});
 
-  final table = ToOne<myTable>();
+  //final table = ToOne<myTable>();
 }
 
 @Entity()
@@ -32,14 +32,12 @@ class myTable {
   int id;
 
   int tableNumber;
-  // TableState state;
-  // Party? party;
+  String state;
 
-  myTable(this.tableNumber, {this.id = 0});
-
-  //myTable(this.tableNumber, this.state, this.party, {this.id = 0});
+  myTable(this.tableNumber, this.state, {this.id = 0});
 }
-  // final int tableNumber;
-  // final TableState state;
-  // final Party party; // fix this later
-  // final int(table?) preassigned;
+
+// string state
+// int tableNumber
+// Party? Party
+// gonna need CounterBody for time

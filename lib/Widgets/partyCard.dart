@@ -2,6 +2,7 @@
 
 import 'dart:async';
 import 'package:capstone_V2/Objects/CounterBody.dart';
+import 'package:capstone_V2/main.dart';
 import 'package:flutter/material.dart';
 import '../Objects/ObjectBox/model.dart';
 import 'PartyTappedButton.dart';
@@ -53,12 +54,13 @@ class PartyCardState extends State<PartyCard> {
 
   void partyTappedDialog(Party party) => showDialog(
       context: context,
-      builder: (context) => AlertDialog(
-            title: Text(party.name),
-            content: FractionallySizedBox(
-              widthFactor: 0.8,
-              heightFactor: 0.43,
-              child: Column(
+      builder: (context) => FractionallySizedBox(
+            widthFactor: .8,
+            heightFactor: .52,
+            child: AlertDialog(
+              title: Text(party.name),
+              content: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   MyButton(
                     btnText: 'Seat',
@@ -70,19 +72,18 @@ class PartyCardState extends State<PartyCard> {
                   ),
                   MyButton(
                     btnText: 'Remove',
-                    onPressed: (() => Navigator.pop(context)),
-                  ),
-                  MyButton(
-                    btnText: 'Edit',
-                    onPressed: (() => Navigator.pop(context)),
+                    onPressed: (() {
+                      objectbox.partyBox.remove(party.id);
+                      Navigator.pop(context);
+                    }),
                   ),
                 ],
               ),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: (() => Navigator.pop(context)),
+                    child: Text('Cancel')),
+              ],
             ),
-            actions: <Widget>[
-              TextButton(
-                  onPressed: (() => Navigator.pop(context)),
-                  child: Text('Cancel')),
-            ],
           ));
 }

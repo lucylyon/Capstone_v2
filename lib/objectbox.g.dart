@@ -36,13 +36,6 @@ final _entities = <ModelEntity>[
             type: 9,
             flags: 0),
         ModelProperty(
-            id: const IdUid(3, 3535150075065647455),
-            name: 'tableId',
-            type: 11,
-            flags: 520,
-            indexId: const IdUid(2, 3216641991569362167),
-            relationTarget: 'myTable'),
-        ModelProperty(
             id: const IdUid(4, 3584896501297269090),
             name: 'size',
             type: 9,
@@ -68,7 +61,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(5, 7639733328394587700),
       name: 'myTable',
-      lastPropertyId: const IdUid(2, 7913464457750292665),
+      lastPropertyId: const IdUid(3, 8235619760228020555),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -80,6 +73,11 @@ final _entities = <ModelEntity>[
             id: const IdUid(2, 7913464457750292665),
             name: 'tableNumber',
             type: 6,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(3, 8235619760228020555),
+            name: 'state',
+            type: 9,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -106,16 +104,17 @@ Future<Store> openStore(
 ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
-      lastEntityId: const IdUid(5, 7639733328394587700),
+      lastEntityId: const IdUid(6, 7070368192983474384),
       lastIndexId: const IdUid(2, 3216641991569362167),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [
         9070991375759217764,
         6541336931039621162,
-        9056045383993088491
+        9056045383993088491,
+        7070368192983474384
       ],
-      retiredIndexUids: const [],
+      retiredIndexUids: const [3216641991569362167],
       retiredPropertyUids: const [
         8123659760592865178,
         4339627968343728224,
@@ -123,7 +122,12 @@ ModelDefinition getObjectBoxModel() {
         860247414556252008,
         3873068093839183365,
         8396402611567574263,
-        7467828056380379891
+        7467828056380379891,
+        965730541416072895,
+        3615049197171583809,
+        1972141211005568718,
+        7605431256313307188,
+        3535150075065647455
       ],
       retiredRelationUids: const [],
       modelVersion: 5,
@@ -133,7 +137,7 @@ ModelDefinition getObjectBoxModel() {
   final bindings = <Type, EntityDefinition>{
     Party: EntityDefinition<Party>(
         model: _entities[0],
-        toOneRelations: (Party object) => [object.table],
+        toOneRelations: (Party object) => [],
         toManyRelations: (Party object) => {},
         getId: (Party object) => object.id,
         setId: (Party object, int id) {
@@ -146,7 +150,6 @@ ModelDefinition getObjectBoxModel() {
           fbb.startTable(8);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
-          fbb.addInt64(2, object.table.targetId);
           fbb.addOffset(3, sizeOffset);
           fbb.addOffset(4, phoneNumberOffset);
           fbb.addInt64(5, object.timeQuoted);
@@ -169,9 +172,7 @@ ModelDefinition getObjectBoxModel() {
               DateTime.fromMillisecondsSinceEpoch(
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0)),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
-          object.table.targetId =
-              const fb.Int64Reader().vTableGet(buffer, rootOffset, 8, 0);
-          object.table.attach(store);
+
           return object;
         }),
     myTable: EntityDefinition<myTable>(
@@ -183,9 +184,11 @@ ModelDefinition getObjectBoxModel() {
           object.id = id;
         },
         objectToFB: (myTable object, fb.Builder fbb) {
-          fbb.startTable(3);
+          final stateOffset = fbb.writeString(object.state);
+          fbb.startTable(4);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.tableNumber);
+          fbb.addOffset(2, stateOffset);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -195,6 +198,8 @@ ModelDefinition getObjectBoxModel() {
 
           final object = myTable(
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0),
+              const fb.StringReader(asciiOptimization: true)
+                  .vTableGet(buffer, rootOffset, 8, ''),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
 
           return object;
@@ -212,24 +217,20 @@ class Party_ {
   /// see [Party.name]
   static final name = QueryStringProperty<Party>(_entities[0].properties[1]);
 
-  /// see [Party.table]
-  static final table =
-      QueryRelationToOne<Party, myTable>(_entities[0].properties[2]);
-
   /// see [Party.size]
-  static final size = QueryStringProperty<Party>(_entities[0].properties[3]);
+  static final size = QueryStringProperty<Party>(_entities[0].properties[2]);
 
   /// see [Party.phoneNumber]
   static final phoneNumber =
-      QueryStringProperty<Party>(_entities[0].properties[4]);
+      QueryStringProperty<Party>(_entities[0].properties[3]);
 
   /// see [Party.timeQuoted]
   static final timeQuoted =
-      QueryIntegerProperty<Party>(_entities[0].properties[5]);
+      QueryIntegerProperty<Party>(_entities[0].properties[4]);
 
   /// see [Party.timeAdded]
   static final timeAdded =
-      QueryIntegerProperty<Party>(_entities[0].properties[6]);
+      QueryIntegerProperty<Party>(_entities[0].properties[5]);
 }
 
 /// [myTable] entity fields to define ObjectBox queries.
@@ -240,4 +241,7 @@ class myTable_ {
   /// see [myTable.tableNumber]
   static final tableNumber =
       QueryIntegerProperty<myTable>(_entities[1].properties[1]);
+
+  /// see [myTable.state]
+  static final state = QueryStringProperty<myTable>(_entities[1].properties[2]);
 }

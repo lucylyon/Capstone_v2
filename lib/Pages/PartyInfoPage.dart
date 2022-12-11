@@ -203,6 +203,18 @@ class PartyInfoPageState extends State<PartyInfoPage> {
                   print('party box cleared');
                 },
                 child: Text('clear partyBox?')),
+            ElevatedButton(
+                onPressed: () {
+                  objectbox.tableBox.removeAll();
+                  print('table box cleared');
+                },
+                child: Text('clear table box?')),
+            ElevatedButton(
+                onPressed: () {
+                  objectbox.putTableData();
+                  //print(objectbox.tableBox.count());
+                },
+                child: Text('add tables')),
           ],
         ));
   }

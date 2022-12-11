@@ -36,11 +36,6 @@ class WaitlistPageState extends State<WaitlistPage> {
   int timeQuoted = 10;
   String timeAdded = '';
 
-  ValueNotifier<int> counter = ValueNotifier<int>(0);
-
-  List<myTable> tables = objectbox.tableBox.getAll();
-  late myTable currentTable;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -118,6 +113,7 @@ class WaitlistPageState extends State<WaitlistPage> {
                               DateTime.now(),
                             );
                             Navigator.pop(context);
+                            clear();
                           });
                         },
                         child: Text('Save'),
@@ -138,19 +134,8 @@ class WaitlistPageState extends State<WaitlistPage> {
   void createParty(String name, String size, String phoneNumber, int timeQuoted,
       DateTime timeAdded) {
     Party newParty = Party(name, size, phoneNumber, timeQuoted, timeAdded);
-
-    print('in createParty. (waitlistpage)');
     objectbox.addParty(newParty);
   }
-
-  // void removeParty(Old_Party party) {
-  //   setState(() {
-  //     waitList.remove(party);
-  //     Navigator.pop(context);
-  //   });
-  // }
-
-
 
 ////// all of these are controller functions
   @override
