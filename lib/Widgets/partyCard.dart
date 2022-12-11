@@ -1,9 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'dart:async';
-import 'package:capstone_V2/Objects/CounterBody.dart';
-import 'package:capstone_V2/main.dart';
 import 'package:flutter/material.dart';
+import '../Objects/TimeTracker.dart';
+import '../main.dart';
 import '../Objects/ObjectBox/model.dart';
 import 'PartyTappedButton.dart';
 
@@ -44,7 +44,7 @@ class PartyCardState extends State<PartyCard> {
         trailing: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            CounterBody(counterValueNotifier: counter),
+            TimeTracker(counterValueNotifier: counter),
             Text(' of ${widget.party.timeQuoted}m')
           ],
         ),

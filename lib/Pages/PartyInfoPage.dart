@@ -5,7 +5,7 @@ import 'dart:ffi';
 import 'package:capstone_V2/main.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
-import '../Objects/CounterBody.dart';
+import '../Objects/TimeTracker.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:objectbox/objectbox.dart';
 
