@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class CounterBody extends StatelessWidget {
-  const CounterBody({super.key, required this.counterValueNotifier});
+class TimeTracker extends StatelessWidget {
+  const TimeTracker({super.key, required this.counterValueNotifier});
 
   final ValueNotifier<Duration> counterValueNotifier;
 

@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
-import 'pages/TablesPage.dart';
-import 'pages/WaitlistPage.dart';
-import '/pages/BottomNavPage.dart';
-import 'pages/PartyInfoPage.dart';
-import 'Objects/ObjectBox/objectBox.dart';
+import '../pages/TablesPage.dart';
+import '../pages/WaitlistPage.dart';
+import '../pages/BottomNavPage.dart';
+import '../pages/PartyInfoPage.dart';
+import '../ObjectBox/objectBox.dart';
 
 // goal is to have just waitlistpage and tablespage on bottom nav bar
 // party info page will pop up when you click on a party that is in the waitlist
