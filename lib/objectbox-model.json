@@ -44,7 +44,7 @@
     },
     {
       "id": "5:7639733328394587700",
-      "lastPropertyId": "3:8235619760228020555",
+      "lastPropertyId": "4:2961756253087566266",
       "name": "myTable",
       "properties": [
         {
@@ -62,6 +62,11 @@
           "id": "3:8235619760228020555",
           "name": "state",
           "type": 9
+        },
+        {
+          "id": "4:2961756253087566266",
+          "name": "preAssigned",
+          "type": 1
         }
       ],
       "relations": []

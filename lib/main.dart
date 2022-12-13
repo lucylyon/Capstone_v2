@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
           '/': (context) => BottomNavPage(),
           //'/waitlist': (context) => testPage(),
           '/waitlist': (context) => WaitlistPage(),
-          '/partyInfo': (context) => PartyInfoPage(),
+          //'/partyInfo': (context) => PartyInfoPage(),
           '/tables': (context) => TablesPage()
         });
   }

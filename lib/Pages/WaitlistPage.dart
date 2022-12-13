@@ -3,7 +3,7 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import '../main.dart';
-import '../Objects/ObjectBox/model.dart';
+import '../ObjectBox/model.dart';
 import '../Widgets/waitlistView.dart';
 
 class WaitlistPage extends StatefulWidget {
@@ -57,43 +57,47 @@ class WaitlistPageState extends State<WaitlistPage> {
         return StatefulBuilder(
             builder: (context, setState) => AlertDialog(
                     title: Text('New Party'),
-                    content: Column(children: [
-                      TextField(
-                        autofocus: true,
-                        decoration: InputDecoration(hintText: 'Name'),
-                        controller: nameController,
-                      ),
-                      TextField(
-                        autofocus: true,
-                        decoration: InputDecoration(hintText: 'Size'),
-                        controller: sizeController,
-                      ),
-                      TextField(
-                        autofocus: true,
-                        decoration: InputDecoration(hintText: 'Phone number'),
-                        controller: phoneNumberController,
-                      ),
-                      Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.only(top: 12.0),
-                            child: Text(
-                              'Quoted Wait Time: ',
-                              style: TextStyle(fontSize: 16),
+                    content: FractionallySizedBox(
+                      heightFactor: .5,
+                      widthFactor: .7,
+                      child: Column(children: [
+                        TextField(
+                          autofocus: true,
+                          decoration: InputDecoration(hintText: 'Name'),
+                          controller: nameController,
+                        ),
+                        TextField(
+                          autofocus: true,
+                          decoration: InputDecoration(hintText: 'Size'),
+                          controller: sizeController,
+                        ),
+                        TextField(
+                          autofocus: true,
+                          decoration: InputDecoration(hintText: 'Phone number'),
+                          controller: phoneNumberController,
+                        ),
+                        Column(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.only(top: 12.0),
+                              child: Text(
+                                'Quoted Wait Time: ',
+                                style: TextStyle(fontSize: 16),
+                              ),
                             ),
-                          ),
-                          DropdownButton(
-                              value: selectedValue,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  selectedValue = newValue!;
-                                  timeQuoted = int.parse(selectedValue);
-                                });
-                              },
-                              items: menuItems)
-                        ],
-                      ),
-                    ]),
+                            DropdownButton(
+                                value: selectedValue,
+                                onChanged: (newValue) {
+                                  setState(() {
+                                    selectedValue = newValue!;
+                                    timeQuoted = int.parse(selectedValue);
+                                  });
+                                },
+                                items: menuItems)
+                          ],
+                        ),
+                      ]),
+                    ),
                     actions: <Widget>[
                       // exits out of popup
                       TextButton(

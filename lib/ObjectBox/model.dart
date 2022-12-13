@@ -33,8 +33,9 @@ class myTable {
 
   int tableNumber;
   String state;
+  bool preAssigned;
 
-  myTable(this.tableNumber, this.state, {this.id = 0});
+  myTable(this.tableNumber, this.state, this.preAssigned, {this.id = 0});
 }
 
 // string state

@@ -2,10 +2,10 @@
 
 import 'dart:async';
 import 'package:flutter/material.dart';
-import '../Objects/TimeTracker.dart';
+import '../Widgets/TimeTracker.dart';
 import '../main.dart';
-import '../Objects/ObjectBox/model.dart';
-import 'PartyTappedButton.dart';
+import '../ObjectBox/model.dart';
+import 'popupButton.dart';
 
 class PartyCard extends StatefulWidget {
   final Party party;
@@ -23,7 +23,7 @@ class PartyCardState extends State<PartyCard> {
 
   @override
   Widget build(BuildContext context) {
-    Timer.periodic(const Duration(seconds: 10), (timer) {
+    Timer.periodic(const Duration(seconds: 1), (timer) {
       counter.value = DateTime.now().difference(widget.party.timeAdded);
     });
     return Card(

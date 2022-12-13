@@ -61,7 +61,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(5, 7639733328394587700),
       name: 'myTable',
-      lastPropertyId: const IdUid(3, 8235619760228020555),
+      lastPropertyId: const IdUid(4, 2961756253087566266),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -78,6 +78,11 @@ final _entities = <ModelEntity>[
             id: const IdUid(3, 8235619760228020555),
             name: 'state',
             type: 9,
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(4, 2961756253087566266),
+            name: 'preAssigned',
+            type: 1,
             flags: 0)
       ],
       relations: <ModelRelation>[],
@@ -185,10 +190,11 @@ ModelDefinition getObjectBoxModel() {
         },
         objectToFB: (myTable object, fb.Builder fbb) {
           final stateOffset = fbb.writeString(object.state);
-          fbb.startTable(4);
+          fbb.startTable(5);
           fbb.addInt64(0, object.id);
           fbb.addInt64(1, object.tableNumber);
           fbb.addOffset(2, stateOffset);
+          fbb.addBool(3, object.preAssigned);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -200,6 +206,7 @@ ModelDefinition getObjectBoxModel() {
               const fb.Int64Reader().vTableGet(buffer, rootOffset, 6, 0),
               const fb.StringReader(asciiOptimization: true)
                   .vTableGet(buffer, rootOffset, 8, ''),
+              const fb.BoolReader().vTableGet(buffer, rootOffset, 10, false),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
 
           return object;
@@ -244,4 +251,8 @@ class myTable_ {
 
   /// see [myTable.state]
   static final state = QueryStringProperty<myTable>(_entities[1].properties[2]);
+
+  /// see [myTable.preAssigned]
+  static final preAssigned =
+      QueryBooleanProperty<myTable>(_entities[1].properties[3]);
 }

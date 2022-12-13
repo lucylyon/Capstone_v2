@@ -17,6 +17,7 @@ class MyButton extends StatelessWidget {
         width: 200,
         child: ElevatedButton(
           style: ButtonStyle(
+              backgroundColor: MaterialStateProperty.all(Colors.blueGrey),
               shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                   RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(24)))),

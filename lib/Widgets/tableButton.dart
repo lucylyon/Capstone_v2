@@ -1,11 +1,13 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:capstone_V2/main.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import '../Objects/ObjectBox/model.dart';
-import '../Objects/ObjectBox/objectBox.dart';
+//import 'package:flutter/src/widgets/container.dart';
+//import 'package:flutter/src/widgets/framework.dart';
+import '../ObjectBox/model.dart';
+import '../ObjectBox/objectBox.dart';
+import 'popupButton.dart';
 
 class TableButton extends StatefulWidget {
   final myTable table;
@@ -33,10 +35,9 @@ class TableButtonState extends State<TableButton> {
   }
 
   Color tableOutlineColor() {
-    // if (widget.table.preassigned) {
-    //   return Color.fromARGB(255, 232, 199, 16);
-    //} else
-    if (widget.table.state == 'open') {
+    if (widget.table.preAssigned) {
+      return Color.fromARGB(255, 232, 199, 16);
+    } else if (widget.table.state == 'open') {
       return Color.fromARGB(255, 23, 133, 47);
     } else if (widget.table.state == 'dirty') {
       return Color.fromARGB(255, 193, 30, 18);
@@ -48,22 +49,13 @@ class TableButtonState extends State<TableButton> {
 
   @override
   Widget build(BuildContext context) {
-// keeps track of how long party has been seating; needs to only happen when
-// table is marked as seated.. hm.
-    // Timer.periodic(const Duration(seconds: 10), (timer) {
-    //   counter.value = DateTime.now().difference(table.timeAdded);
-    // });
-    //  CounterBody(counterValueNotifier: counter)
-
-// make onPressed like partyClickedDialog
     return Padding(
       padding: const EdgeInsets.fromLTRB(8, 8, 8, 8),
       child: ElevatedButton(
         onPressed: (() {
-          print('pressed');
+          tableTappedDialog(widget.table);
         }),
         style: ButtonStyle(
-            // fixedSize: MaterialStateProperty.all(Size(60, 60)),
             backgroundColor: MaterialStateProperty.all(tableColor()),
             shape: MaterialStateProperty.all(RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(20.0),
@@ -79,10 +71,105 @@ class TableButtonState extends State<TableButton> {
       ),
     );
   }
+
+  void tableTappedDialog(myTable table) => showDialog(
+      context: context,
+      builder: (context) => FractionallySizedBox(
+            widthFactor: .8,
+            heightFactor: .7,
+            child: AlertDialog(
+              title: Text('Table ${table.tableNumber.toString()}'),
+              content: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  MyButton(
+                    btnText: 'Preassign',
+                    onPressed: () {
+                      preAssign(table);
+                      Navigator.pop(context);
+                    },
+                  ),
+                  Text(
+                    'Mark as:',
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                  MyButton(
+                    btnText: 'Open',
+                    onPressed: () {
+                      markTableOpen(table);
+                      Navigator.pop(context);
+                    },
+                  ),
+                  MyButton(
+                    btnText: 'Dirty',
+                    onPressed: () {
+                      markTableDirty(table);
+                      Navigator.pop(context);
+                    },
+                  ),
+                  MyButton(
+                    btnText: 'Seated',
+                    onPressed: () {
+                      markTableSeated(table);
+                      Navigator.pop(context);
+                    },
+                  ),
+                  MyButton(
+                    btnText: 'Disabled',
+                    onPressed: () {
+                      disableTable(table);
+                      Navigator.pop(context);
+                    },
+                  ),
+                ],
+              ),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: (() => Navigator.pop(context)),
+                    child: Text(
+                      'Cancel',
+                      style: TextStyle(color: Colors.blueGrey),
+                    )),
+              ],
+            ),
+          ));
+  void markTableDirty(myTable table) {
+    setState(() {
+      table.state = 'dirty';
+    });
+  }
+
+  void disableTable(myTable table) {
+    setState(() {
+      table.state = 'disabled';
+    });
+  }
+
+  void markTableOpen(myTable table) {
+    setState(() {
+      table.state = 'open';
+    });
+  }
+
+  void markTableSeated(myTable table) {
+    setState(() {
+      table.state = 'seated';
+      // table.party = party;
+      // start timeTracker;
+    });
+  }
+
+  void preAssign(myTable table) {
+    setState(() {
+      table.preAssigned = true;
+      //preAssign party
+      //dialog (waitlist)
+      // when party card clicked, (null) (print)
+    });
+  }
 }
 
-
-//COLORS: 
+//COLORS:
 //open = all green
 //dirty = all red
 //seated = all blue

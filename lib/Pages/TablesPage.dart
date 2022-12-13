@@ -1,7 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
-import 'package:capstone_V2/Objects/ObjectBox/model.dart';
-import 'package:capstone_V2/Widgets/tableButton.dart';
+import '../ObjectBox/model.dart';
+import '../Widgets/tableButton.dart';
 import 'package:flutter/material.dart';
 import '../main.dart';
 
@@ -36,7 +36,6 @@ class TablesPageState extends State<TablesPage> {
                 return GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3, childAspectRatio: 1.03),
-                    // shrinkWrap: true,
                     itemCount: snapshot.hasData ? snapshot.data!.length : 0,
                     itemBuilder: itemBuilder(snapshot.data ?? []));
               } else {

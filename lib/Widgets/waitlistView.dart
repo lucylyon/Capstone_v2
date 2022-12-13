@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../main.dart';
-import '../Objects/ObjectBox/model.dart';
+import '../ObjectBox/model.dart';
 import '../Widgets/partyCard.dart';
 
 class WaitList extends StatefulWidget {
