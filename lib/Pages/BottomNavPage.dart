@@ -1,7 +1,8 @@
+import 'package:capstone_V2/Pages/PartyInfoPage.dart';
 import 'package:flutter/material.dart';
-import '/pages/TablesPage.dart';
-import '/pages/WaitlistPage.dart';
-import '/pages/PartyInfoPage.dart';
+import '../Pages/TablesPage.dart';
+import '../Pages/WaitlistPage.dart';
+import '../Pages/PartyInfoPage.dart';
 
 class BottomNavPage extends StatefulWidget {
   const BottomNavPage({super.key});
@@ -11,7 +12,7 @@ class BottomNavPage extends StatefulWidget {
 }
 
 class BottomNavPageState extends State<BottomNavPage> {
-  List<Widget> children = [WaitlistPage(), TablesPage()];
+  List<Widget> children = [WaitlistPage(), PartyInfoPage(), TablesPage()];
   //List<Widget> children = [testPage(), PartyInfoPage(), TablesPage()];
   int currentIndex = 0;
 
@@ -22,10 +23,6 @@ class BottomNavPageState extends State<BottomNavPage> {
       'Index 0: Waitlist',
       style: optionStyle,
     ),
-    // Text(
-    //   'Index 1: Testing',
-    //   style: optionStyle,
-    // ),
     Text(
       'Index 2: Tables',
       style: optionStyle,
@@ -51,13 +48,13 @@ class BottomNavPageState extends State<BottomNavPage> {
                 color: Colors.blueGrey,
               ),
               label: 'Waitlist'),
-          // BottomNavigationBarItem(
-          //   icon: Icon(
-          //     Icons.tag_faces,
-          //     color: Colors.blueGrey,
-          //   ),
-          //   label: 'Testing',
-          // ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.tag_faces,
+              color: Colors.blueGrey,
+            ),
+            label: 'Testing',
+          ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.table_bar,

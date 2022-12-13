@@ -22,7 +22,7 @@ final _entities = <ModelEntity>[
   ModelEntity(
       id: const IdUid(3, 1028974137047872354),
       name: 'Party',
-      lastPropertyId: const IdUid(7, 5500193495818654090),
+      lastPropertyId: const IdUid(8, 8466855982485180527),
       flags: 0,
       properties: <ModelProperty>[
         ModelProperty(
@@ -54,7 +54,14 @@ final _entities = <ModelEntity>[
             id: const IdUid(7, 5500193495818654090),
             name: 'timeAdded',
             type: 10,
-            flags: 0)
+            flags: 0),
+        ModelProperty(
+            id: const IdUid(8, 8466855982485180527),
+            name: 'tableId',
+            type: 11,
+            flags: 520,
+            indexId: const IdUid(3, 223475589975875696),
+            relationTarget: 'myTable')
       ],
       relations: <ModelRelation>[],
       backlinks: <ModelBacklink>[]),
@@ -110,7 +117,7 @@ ModelDefinition getObjectBoxModel() {
   final model = ModelInfo(
       entities: _entities,
       lastEntityId: const IdUid(6, 7070368192983474384),
-      lastIndexId: const IdUid(2, 3216641991569362167),
+      lastIndexId: const IdUid(3, 223475589975875696),
       lastRelationId: const IdUid(0, 0),
       lastSequenceId: const IdUid(0, 0),
       retiredEntityUids: const [
@@ -142,7 +149,7 @@ ModelDefinition getObjectBoxModel() {
   final bindings = <Type, EntityDefinition>{
     Party: EntityDefinition<Party>(
         model: _entities[0],
-        toOneRelations: (Party object) => [],
+        toOneRelations: (Party object) => [object.table],
         toManyRelations: (Party object) => {},
         getId: (Party object) => object.id,
         setId: (Party object, int id) {
@@ -152,13 +159,14 @@ ModelDefinition getObjectBoxModel() {
           final nameOffset = fbb.writeString(object.name);
           final sizeOffset = fbb.writeString(object.size);
           final phoneNumberOffset = fbb.writeString(object.phoneNumber);
-          fbb.startTable(8);
+          fbb.startTable(9);
           fbb.addInt64(0, object.id);
           fbb.addOffset(1, nameOffset);
           fbb.addOffset(3, sizeOffset);
           fbb.addOffset(4, phoneNumberOffset);
           fbb.addInt64(5, object.timeQuoted);
           fbb.addInt64(6, object.timeAdded.millisecondsSinceEpoch);
+          fbb.addInt64(7, object.table.targetId);
           fbb.finish(fbb.endTable());
           return object.id;
         },
@@ -177,7 +185,9 @@ ModelDefinition getObjectBoxModel() {
               DateTime.fromMillisecondsSinceEpoch(
                   const fb.Int64Reader().vTableGet(buffer, rootOffset, 16, 0)),
               id: const fb.Int64Reader().vTableGet(buffer, rootOffset, 4, 0));
-
+          object.table.targetId =
+              const fb.Int64Reader().vTableGet(buffer, rootOffset, 18, 0);
+          object.table.attach(store);
           return object;
         }),
     myTable: EntityDefinition<myTable>(
@@ -238,6 +248,10 @@ class Party_ {
   /// see [Party.timeAdded]
   static final timeAdded =
       QueryIntegerProperty<Party>(_entities[0].properties[5]);
+
+  /// see [Party.table]
+  static final table =
+      QueryRelationToOne<Party, myTable>(_entities[0].properties[6]);
 }
 
 /// [myTable] entity fields to define ObjectBox queries.

@@ -18,12 +18,13 @@ class Party {
   @Property(type: PropertyType.date)
   DateTime timeAdded;
 
+  final table = ToOne<myTable>();
   // bool seated?
 
   Party(this.name, this.size, this.phoneNumber, this.timeQuoted, this.timeAdded,
       {this.id = 0});
 
-  //final table = ToOne<myTable>();
+  // myTable table = ToOne<myTable>();
 }
 
 @Entity()
