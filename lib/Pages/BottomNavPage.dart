@@ -12,8 +12,8 @@ class BottomNavPage extends StatefulWidget {
 }
 
 class BottomNavPageState extends State<BottomNavPage> {
-  List<Widget> children = [WaitlistPage(), PartyInfoPage(), TablesPage()];
-  //List<Widget> children = [testPage(), PartyInfoPage(), TablesPage()];
+  // List<Widget> children = [WaitlistPage(), PartyInfoPage(), TablesPage()];
+  List<Widget> children = [WaitlistPage(), TablesPage()];
   int currentIndex = 0;
 
   static const TextStyle optionStyle =
@@ -48,13 +48,13 @@ class BottomNavPageState extends State<BottomNavPage> {
                 color: Colors.blueGrey,
               ),
               label: 'Waitlist'),
-          BottomNavigationBarItem(
-            icon: Icon(
-              Icons.tag_faces,
-              color: Colors.blueGrey,
-            ),
-            label: 'Testing',
-          ),
+          // BottomNavigationBarItem(
+          //   icon: Icon(
+          //     Icons.tag_faces,
+          //     color: Colors.blueGrey,
+          //   ),
+          //   label: 'Testing',
+          // ),
           BottomNavigationBarItem(
             icon: Icon(
               Icons.table_bar,

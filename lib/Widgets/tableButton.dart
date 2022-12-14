@@ -35,7 +35,7 @@ class TableButtonState extends State<TableButton> {
   }
 
   Color tableOutlineColor() {
-    if (widget.table.preAssigned) {
+    if (widget.table.preAssigned && widget.table.state != 'disabled') {
       return Color.fromARGB(255, 232, 199, 16);
     } else if (widget.table.state == 'open') {
       return Color.fromARGB(255, 23, 133, 47);

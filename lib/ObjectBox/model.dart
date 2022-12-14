@@ -35,11 +35,9 @@ class myTable {
   int tableNumber;
   String state;
   bool preAssigned;
+  late Party party;
 
   myTable(this.tableNumber, this.state, this.preAssigned, {this.id = 0});
 }
-
-// string state
-// int tableNumber
 // Party? Party
 // gonna need CounterBody for time

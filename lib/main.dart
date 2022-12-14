@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import '../pages/TablesPage.dart';
 import '../pages/WaitlistPage.dart';
 import '../pages/BottomNavPage.dart';
-import '../pages/PartyInfoPage.dart';
 import '../ObjectBox/objectBox.dart';
 
 // goal is to have just waitlistpage and tablespage on bottom nav bar
@@ -35,9 +34,8 @@ class MyApp extends StatelessWidget {
         routes: {
           //i don think i need this
           '/': (context) => BottomNavPage(),
-          //'/waitlist': (context) => testPage(),
           '/waitlist': (context) => WaitlistPage(),
-          '/partyInfo': (context) => PartyInfoPage(),
+          //    '/partyInfo': (context) => PartyInfoPage(),
           '/tables': (context) => TablesPage()
         });
   }
